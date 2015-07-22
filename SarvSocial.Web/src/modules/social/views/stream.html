@@ -1,0 +1,89 @@
+﻿
+<div class="container" ng-controller="streamController">
+   
+	<div class="row">
+		<div class="col-xs-6">
+			<button ng-click="connectButton()" id="connectButton" type="button" class="btn btn-primary">Connect Twitter</button>
+			<button ng-click="refreshTimeline()" id="getTimelineButton" type="button" class="btn btn-info" style="display:none;">Get My Timeline</button>
+			<button ng-click="signOut()" id="signOut" type="button" class="btn btn-link" style="display:none;">Sign Out</button>
+		</div>
+		<div class="col-xs-6">
+			<input type="text" ng-model="searchTerm" class="form-control" id="searchBox" placeholder="Enter search term here" ng-show="connectedTwitter" />
+		</div>
+	</div>
+     <hr/>
+    <div class="row">
+        <div class="col-lg-6 col-xs-12">
+            <!--<div class="mail-text h-200">
+
+                <div summernote class="summernote" ng-model="tweet">
+
+                </div>
+                
+            </div>-->
+            <textarea rows="3" cols="40" ng-model="tweet">
+
+            </textarea>
+            <div class="text-left tooltip-demo">
+                <button ng-click="posttweet()" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send"><i class="fa fa-reply"></i> Send</button>
+                <button ng-click="discardtweet()" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Discard</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <hr/>
+	<div class="row">
+		<div class="col-xs-12" id="results">
+			<div class="row" ng-repeat="t in tweets | filter:searchTerm">
+				<div class="social-feed-box">
+					<div class="pull-right social-action dropdown">
+						<button data-toggle="dropdown" class="dropdown-toggle btn-white">
+							<i class="fa fa-angle-down"></i>
+						</button>
+						<ul class="dropdown-menu m-t-xs">
+							<li><a href="#">Config</a></li>
+						</ul>
+					</div>
+					<div class="social-avatar">
+						<a href="{{t.user.url}}" class="pull-left">
+							<img ng-src="{{t.user.profile_image_url}}" class="img-circle">
+						</a>
+						<div class="media-body">
+							<a href="{{t.user.url}}">
+								{{t.user.name}}
+							</a>
+							<small class="text-muted">{{t.created_at|date:'medium'}}</small>
+						</div>
+					</div>
+					<div class="social-body">
+						<p>
+							<br> <span ng-bind-html="t.text"></span>                            
+						</p>
+						<div class="btn-group">
+							<button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
+							<button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comment</button>                           
+						</div>
+					</div>
+					<div class="social-footer">
+						
+				</div>
+
+								 
+					   
+					   
+					</div>
+			 </div>
+</div>
+
+		</div>
+			<div ng-show="rateLimitError">
+				Rate limit reached. You are making too many requests.
+			</div>
+
+			<div>
+				<br />
+				<input type="button" class="btn btn-info" id="load-more" ng-click="refreshTimeline(tweets[tweets.length-1].id)" ng-show="connectedTwitter" value="Load More" />
+			</div>
+		</div>
+
+   
