@@ -136,10 +136,8 @@
     <Content Include="src\less\app\badgets_labels.less" />
     <Content Include="src\less\app\base.less" />
     <Content Include="src\less\app\buttons.less" />
-    <Content Include="src\less\app\chat.less" />
     <Content Include="src\less\app\custom.less" />
     <Content Include="src\less\app\elements.less" />
-    <Content Include="src\less\app\landing.less" />
     <Content Include="src\less\app\media.less" />
     <Content Include="src\less\app\metismenu.less" />
     <Content Include="src\less\app\mixins.less" />
