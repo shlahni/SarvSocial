@@ -1,0 +1,26 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row" >
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" ng-repeat="friend in friends" >
+
+            <div class="contact-box" >
+                <a href="{{friend.url}}">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img ng-src="{{friend.profile_image_url}}" class="img-circle m-t-xs img-responsive">
+                            <!--<div class="m-t-xs font-bold">{{friend.followers_count}} followers</div>-->
+                        </div>
+                    </div>
+                </a>
+                    <div class="col-sm-8">
+                        <h3><strong>{{friend.name}}</strong></h3>
+
+                        <p>{{friend.description}}</p>                       
+                    </div>
+                    <div class="clearfix"></div>
+                
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -71,6 +71,7 @@
     <Content Include="src\app.js" />
     <Content Include="src\modules\main\main.controller.js" />
     <Content Include="src\modules\main\main.html" />
+    <Content Include="src\modules\social\controllers\friendscontroller.js" />
     <Content Include="src\modules\social\controllers\messagecontroller.js" />
     <Content Include="src\modules\social\controllers\streamcontroller.js" />
     <Content Include="src\modules\social\services\twitterService.js" />
@@ -157,6 +158,9 @@
   <ItemGroup>
     <Content Include="vendor.base.json" />
     <Content Include="vendor.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\social\views\friends.html" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

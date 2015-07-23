@@ -1,9 +1,12 @@
 ﻿App.factory('twitterService', function ($q) {
 
     var authorizationResult = false;
-
+    var initialized = false;
     return {
         initialize: function () {
+           
+            console.log("twitter Service initialize", initialized, authorizationResult);
+
             //initialize OAuth.io with public key of the application
             OAuth.initialize('zITShgVwo4mIGwykrhdDh9YDzys', {
                 cache: true
@@ -11,9 +14,14 @@
             //try to create an authorization result when the page loads,
             // this means a returning user won't have to click the twitter button again
             authorizationResult = OAuth.create("twitter");
+            initialized = true;
         },
         isReady: function () {
             return (authorizationResult);
+        },
+        isConnected : function()
+        {
+            return initialized==true&& authorizationResult!= false;
         },
         connectTwitter: function () {
             var deferred = $q.defer();
@@ -32,6 +40,7 @@
             return deferred.promise;
         },
         clearCache: function () {
+            console.log("Clear cache");
             OAuth.clearCache('twitter');
             authorizationResult = false;
         },
@@ -45,6 +54,24 @@
             }
             var promise = authorizationResult.get(url).done(function (data) {
                 // https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
+                // when the data is retrieved resolve the deferred object
+                deferred.resolve(data);
+            }).fail(function (err) {
+                deferred.reject(err);
+            });
+            //return the promise of the deferred object
+            return deferred.promise;
+        },
+
+        getFriends: function (maxId) {
+            //create a deferred object using Angular's $q service
+            var deferred = $q.defer();
+            var url = '/1.1/friends/list.json';
+            if (maxId) {
+                url += '?max_id=' + maxId;
+            }
+            var promise = authorizationResult.get(url).done(function (data) {
+                
                 // when the data is retrieved resolve the deferred object
                 deferred.resolve(data);
             }).fail(function (err) {

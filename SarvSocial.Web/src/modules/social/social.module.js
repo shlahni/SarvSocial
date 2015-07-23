@@ -15,5 +15,11 @@
                data: { pageTitle: 'Stream page' },
                controller: 'streamController'
            })
+          .state('app.social.friends', {
+              url: "/friends",
+              templateUrl: "dist/views/social/views/friends.html",
+              data: { pageTitle: 'Friends List' },
+              controller: 'friendController'
+          })
       }
 ]);
